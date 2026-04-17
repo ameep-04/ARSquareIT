@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AR Square IT Jaipur | Training · Development · Placement</title>
+<meta name="description" content="AR Square IT Jaipur - Leading IT training institute and software development company in Jaipur. Learn practical skills, work on live projects, and get placement support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --blue: #1565C0;
+    --blue-light: #1E88E5;
+    --blue-pale: #E3F2FD;
+    --blue-mid: #42A5F5;
+    --yellow: #FFB300;
+    --yellow-light: #FFE082;
+    --yellow-pale: #FFF8E1;
+    --dark: #0D1B2A;
+    --dark2: #1A2940;
+    --text: #1A2340;
+    --text2: #4A5568;
+    --text3: #718096;
+    --white: #ffffff;
+    --surface: #F8FAFF;
+    --border: rgba(21, 101, 192, 0.12);
+    --radius: 16px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(21,101,192,0.10);
+    --shadow-lg: 0 12px 40px rgba(21,101,192,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; }
+
+  /* ---- NAVBAR ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 20px rgba(21,101,192,0.12); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover; }
+  .nav-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--blue); line-height: 1.2; }
+  .nav-brand span { display: block; font-size: 0.65rem; font-weight: 500; color: var(--text3); letter-spacing: 0.05em; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--text2); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-cta { background: var(--blue); color: white; padding: 9px 22px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+  .nav-cta:hover { background: var(--blue-light); transform: translateY(-1px); }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .nav-hamburger span { width: 24px; height: 2px; background: var(--blue); border-radius: 2px; transition: all 0.3s; }
+
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0D1B2A 0%, #1565C0 50%, #0D47A1 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding-top: 70px;
+  }
+  .hero-bg-circles {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  .hero-bg-circles::before {
+    content: ''; position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,179,0,0.15) 0%, transparent 70%);
+    top: -100px; right: -100px; border-radius: 50%;
+    animation: pulse 6s ease-in-out infinite;
+  }
+  .hero-bg-circles::after {
+    content: ''; position: absolute; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(66,165,245,0.2) 0%, transparent 70%);
+    bottom: -50px; left: 10%; border-radius: 50%;
+    animation: pulse 8s ease-in-out infinite reverse;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+  .hero-floating {
+    position: absolute; border-radius: 12px;
+    background: rgba(255,255,255,0.08); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 12px 18px; font-size: 0.8rem; color: white; font-weight: 500;
+    animation: float 4s ease-in-out infinite;
+  }
+  .hero-floating:nth-child(1) { top: 20%; right: 5%; animation-delay: 0s; }
+  .hero-floating:nth-child(2) { top: 60%; right: 8%; animation-delay: 1.5s; }
+  .hero-floating:nth-child(3) { bottom: 20%; left: 5%; animation-delay: 3s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  .hero-content { position: relative; z-index: 2; padding: 60px 5%; max-width: 780px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,179,0,0.15); border: 1px solid rgba(255,179,0,0.4);
+    color: var(--yellow); padding: 7px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .hero-badge i { font-size: 0.75rem; }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15;
+    color: white; margin-bottom: 20px; letter-spacing: -0.02em;
+  }
+  .hero h1 span { color: var(--yellow); }
+  .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 36px; max-width: 560px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn-primary {
+    background: var(--yellow); color: var(--dark); padding: 14px 32px;
+    border-radius: 50px; font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(255,179,0,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,179,0,0.5); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.5); color: white; padding: 12px 28px;
+    border-radius: 50px; font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+  .hero-location {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.65); font-size: 0.85rem;
+  }
+  .hero-location i { color: var(--yellow); }
+  .hero-stats {
+    display: flex; gap: 36px; margin-top: 48px; flex-wrap: wrap;
+  }
+  .hero-stat { }
+  .hero-stat strong { display: block; font-size: 1.8rem; font-weight: 800; color: white; font-family: 'Space Grotesk', sans-serif; }
+  .hero-stat span { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+  /* ---- SECTIONS ---- */
+  section { padding: 80px 5%; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-pale); color: var(--blue);
+    padding: 6px 16px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .section-title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--dark); margin-bottom: 12px; line-height: 1.25; }
+  .section-title span { color: var(--blue); }
+  .section-sub { font-size: 1rem; color: var(--text3); max-width: 580px; line-height: 1.7; }
+  .section-header { margin-bottom: 50px; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-sub { margin: 0 auto; }
+
+  /* ---- ABOUT ---- */
+  .about { background: var(--surface); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .about-image-block { position: relative; }
+  .about-image-card {
+    background: linear-gradient(135deg, var(--blue) 0%, #0D47A1 100%);
+    border-radius: 20px; padding: 40px; color: white; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .about-image-card::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: rgba(255,179,0,0.2);
+  }
+  .about-icon-big { font-size: 4rem; margin-bottom: 16px; }
+  .about-image-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+  .about-image-card p { opacity: 0.85; font-size: 0.9rem; }
+  .about-badge-float {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--yellow); color: var(--dark); padding: 14px 20px;
+    border-radius: 14px; font-weight: 700; font-size: 0.9rem; line-height: 1.3;
+    box-shadow: 0 8px 24px rgba(255,179,0,0.3);
+    text-align: center;
+  }
+  .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+  .about-feature {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: white; border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+  }
+  .about-feature-icon {
+    width: 40px; height: 40px; min-width: 40px; border-radius: 10px;
+    background: var(--blue-pale); color: var(--blue);
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  }
+  .about-feature h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 3px; }
+  .about-feature p { font-size: 0.78rem; color: var(--text3); line-height: 1.5; }
+
+  /* ---- SERVICES ---- */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .service-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 32px 28px; position: relative; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px; background: linear-gradient(90deg, var(--blue), var(--yellow));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--blue-mid); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 56px; height: 56px; border-radius: 14px;
+    background: var(--blue-pale); color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 20px;
+    transition: background 0.3s, color 0.3s;
+  }
+  .service-card:hover .service-icon { background: var(--blue); color: white; }
+  .service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: var(--dark); }
+  .service-card p { font-size: 0.87rem; color: var(--text3); line-height: 1.7; }
+  .services-highlight {
+    margin-top: 40px; text-align: center;
+    background: linear-gradient(135deg, var(--blue) 0%, #0D47A1 100%);
+    border-radius: var(--radius); padding: 28px;
+    color: white; font-size: 1.1rem; font-weight: 700;
+    position: relative; overflow: hidden;
+  }
+  .services-highlight::before {
+    content: ''; position: absolute; top: -30px; right: -30px;
+    width: 140px; height: 140px; border-radius: 50%; background: rgba(255,179,0,0.2);
+  }
+  .services-highlight span { color: var(--yellow); }
+
+  /* ---- COURSES ---- */
+  .courses { background: var(--surface); }
+  .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }
+  .course-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px 20px; text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: default;
+  }
+  .course-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .course-icon {
+    width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 14px;
+    background: linear-gradient(135deg, var(--blue-pale), #DCEEFB);
+    color: var(--blue); display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; transition: background 0.3s, color 0.3s;
+  }
+  .course-card:hover .course-icon { background: linear-gradient(135deg, var(--blue), var(--blue-light)); color: white; }
+  .course-card h4 { font-size: 0.92rem; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
+  .course-card p { font-size: 0.76rem; color: var(--text3); line-height: 1.5; margin-bottom: 14px; }
+  .btn-enroll {
+    display: inline-block; background: var(--yellow-pale); color: var(--blue);
+    padding: 7px 18px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+    text-decoration: none; border: 1px solid var(--yellow);
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-enroll:hover { background: var(--yellow); color: var(--dark); }
+
+  /* ---- WHY CHOOSE ---- */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  .why-card {
+    text-align: center; padding: 36px 24px;
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .why-icon {
+    width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 18px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-light));
+    color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  }
+  .why-card h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+  .why-card p { font-size: 0.82rem; color: var(--text3); line-height: 1.6; }
+
+  /* ---- COUNTERS ---- */
+  .counters {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--blue) 100%);
+    padding: 60px 5%;
+  }
+  .counters-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .counter-item { text-align: center; color: white; }
+  .counter-num { font-size: 2.8rem; font-weight: 800; font-family: 'Space Grotesk', sans-serif; color: var(--yellow); }
+  .counter-label { font-size: 0.88rem; color: rgba(255,255,255,0.75); margin-top: 4px; }
+
+  /* ---- TESTIMONIALS ---- */
+  .testimonials { background: var(--surface); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .testimonial-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px;
+  }
+  .stars { color: var(--yellow); font-size: 0.9rem; margin-bottom: 14px; letter-spacing: 2px; }
+  .testimonial-card p { font-size: 0.9rem; color: var(--text2); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 42px; height: 42px; border-radius: 50%; font-weight: 700; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--blue), var(--blue-light)); color: white;
+  }
+  .author-name { font-weight: 700; font-size: 0.9rem; }
+  .author-role { font-size: 0.75rem; color: var(--text3); }
+
+  /* ---- FAQ ---- */
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 12px; overflow: hidden; }
+  .faq-q {
+    padding: 18px 24px; font-weight: 600; font-size: 0.95rem; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    background: white; transition: background 0.2s;
+    user-select: none;
+  }
+  .faq-q:hover { background: var(--blue-pale); }
+  .faq-q i { color: var(--blue); transition: transform 0.3s; font-size: 0.85rem; }
+  .faq-q.active i { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    background: var(--surface);
+  }
+  .faq-a.open { max-height: 200px; }
+  .faq-a p { padding: 16px 24px; font-size: 0.88rem; color: var(--text2); line-height: 1.7; }
+
+  /* ---- CONTACT ---- */
+  .contact { background: white; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+  .contact-info { }
+  .contact-detail {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+    margin-bottom: 16px;
+  }
+  .contact-detail-icon {
+    width: 44px; height: 44px; min-width: 44px; border-radius: 12px;
+    background: var(--blue); color: white;
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  }
+  .contact-detail h4 { font-size: 0.83rem; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .contact-detail p, .contact-detail a { font-size: 0.9rem; color: var(--dark); font-weight: 500; text-decoration: none; }
+  .contact-detail a:hover { color: var(--blue); }
+  .contact-action-btns { display: flex; gap: 12px; margin-top: 20px; }
+  .btn-call {
+    flex: 1; background: var(--blue); color: white; padding: 12px 20px;
+    border-radius: 50px; font-weight: 700; font-size: 0.88rem; text-decoration: none;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background 0.2s;
+  }
+  .btn-call:hover { background: var(--blue-light); }
+  .btn-wa {
+    flex: 1; background: #25D366; color: white; padding: 12px 20px;
+    border-radius: 50px; font-weight: 700; font-size: 0.88rem; text-decoration: none;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background 0.2s;
+  }
+  .btn-wa:hover { background: #20B858; }
+  .map-embed { margin-top: 20px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+  .contact-form-wrap {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 36px;
+  }
+  .contact-form-wrap h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; color: var(--dark); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text2); margin-bottom: 7px; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 11px 14px; border-radius: 10px; border: 1.5px solid var(--border);
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; color: var(--dark);
+    background: white; transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--blue); box-shadow: 0 0 0 3px rgba(21,101,192,0.1);
+  }
+  .form-group textarea { min-height: 110px; resize: vertical; }
+  .btn-submit {
+    width: 100%; background: var(--blue); color: white; padding: 14px;
+    border-radius: 50px; font-size: 0.95rem; font-weight: 700; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: background 0.2s, transform 0.2s; font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .btn-submit:hover { background: var(--blue-light); transform: translateY(-1px); }
+  .form-success {
+    display: none; text-align: center; padding: 24px;
+    color: #1B5E20; background: #E8F5E9; border-radius: 12px; margin-top: 16px;
+    font-weight: 600;
+  }
+
+  /* ---- SOCIAL FLOATING ---- */
+  .social-float {
+    position: fixed; left: 16px; bottom: 80px; z-index: 999;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .social-float a {
+    width: 40px; height: 40px; border-radius: 50%; color: white;
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+  .social-float a:hover { transform: scale(1.15); }
+  .sf-ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+  .sf-fb { background: #1877F2; }
+  .sf-li { background: #0A66C2; }
+  .sf-yt { background: #FF0000; }
+
+  /* ---- WA FLOAT ---- */
+  .wa-float {
+    position: fixed; right: 20px; bottom: 20px; z-index: 999;
+    background: #25D366; color: white; width: 54px; height: 54px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.4); text-decoration: none;
+    animation: wa-pulse 2s infinite;
+    transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+  @keyframes wa-pulse {
+    0%,100% { box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 6px 30px rgba(37,211,102,0.7); }
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,0.8); padding: 60px 5% 30px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand { }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .footer-logo img { height: 44px; width: 44px; border-radius: 50%; }
+  .footer-logo span { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; color: white; }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 300px; }
+  .footer-col h4 { color: white; font-size: 0.92rem; font-weight: 700; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 9px; }
+  .footer-col ul li a { text-decoration: none; color: rgba(255,255,255,0.65); font-size: 0.84rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--yellow); }
+  .footer-contact-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+  .footer-contact-item i { color: var(--yellow); margin-top: 2px; font-size: 0.85rem; }
+  .footer-contact-item span { font-size: 0.83rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;
+  }
+  .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+  .footer-socials { display: flex; gap: 10px; }
+  .footer-socials a {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
+    display: flex; align-items: center; justify-content: center; font-size: 0.85rem;
+    text-decoration: none; transition: background 0.2s, color 0.2s;
+  }
+  .footer-socials a:hover { background: var(--yellow); color: var(--dark); }
+
+  /* ---- RESPONSIVE ---- */
+  @media(max-width: 900px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .counters-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .hero-floating { display: none; }
+  }
+  @media(max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .counters-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-stats { gap: 20px; }
+    section { padding: 60px 5%; }
+  }
+
+  /* ---- MOBILE MENU ---- */
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 998;
+    background: white; flex-direction: column; padding: 90px 5% 40px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 1.2rem; font-weight: 600; color: var(--dark); text-decoration: none; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .mobile-menu a.cta { color: white; background: var(--blue); text-align: center; border-radius: 12px; margin-top: 20px; border: none; }
+
+  /* ---- SCROLL REVEAL ---- */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="https://via.placeholder.com/46/1565C0/ffffff?text=AR" alt="AR Square IT Logo" id="nav-logo-img">
+    <div class="nav-brand">AR Square IT <span>Training · Development · Placement</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#courses" onclick="closeMobile()">Courses</a>
+  <a href="#why" onclick="closeMobile()">Why Us</a>
+  <a href="#testimonials" onclick="closeMobile()">Reviews</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <a href="#contact" class="cta" onclick="closeMobile()">Contact Us</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-circles"></div>
+  <div class="hero-floating">🎓 Live Projects Training</div>
+  <div class="hero-floating">💼 Placement Support</div>
+  <div class="hero-floating">🏆 Industry Certified</div>
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fas fa-map-marker-alt"></i> Benar Phatak, Jaipur · Since 2018</div>
+    <h1>Build Your Career with <span>AR Square IT</span> Jaipur</h1>
+    <p>Learn Skills + Work on Live Projects. Your gateway to a successful tech career starts right here in Jaipur.</p>
+    <div class="hero-btns">
+      <a href="#courses" class="btn-primary"><i class="fas fa-rocket"></i> Explore Courses</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-phone-alt"></i> Contact Us</a>
+    </div>
+    <div class="hero-location"><i class="fas fa-map-marker-alt"></i> 1st Floor, Balaji Vihar, Lunawat Chamber, Benar Phatak, Jaipur</div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong id="c1">0</strong><span>Students Trained</span></div>
+      <div class="hero-stat"><strong id="c2">0</strong><span>Courses Available</span></div>
+      <div class="hero-stat"><strong id="c3">0</strong><span>Live Projects</span></div>
+      <div class="hero-stat"><strong id="c4">0</strong><span>Years Experience</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-image-block reveal">
+      <div class="about-image-card">
+        <div class="about-icon-big">🖥️</div>
+        <h3>AR Square IT Jaipur</h3>
+        <p>Training · Development · Placement</p>
+      </div>
+      <div class="about-badge-float">⭐ 4.9/5<br><small>500+ Reviews</small></div>
+    </div>
+    <div class="reveal">
+      <div class="section-label"><i class="fas fa-info-circle"></i> About Us</div>
+      <h2 class="section-title">Empowering Students &amp; <span>Businesses</span> Digitally</h2>
+      <p class="section-sub" style="margin-bottom:24px">AR Square IT Jaipur is a leading IT training institute and software development company near Benar Phatak, Jaipur. We provide practical, skill-based learning combined with real-world project development to help students and businesses thrive in the digital world.</p>
+      <p style="font-size:0.88rem;color:var(--text3);line-height:1.7;margin-bottom:24px"><strong style="color:var(--dark)">Our Mission:</strong> To bridge the gap between academic education and industry requirements by providing hands-on, practical training on live projects.<br><br><strong style="color:var(--dark)">Our Vision:</strong> To become Rajasthan's most trusted IT training and development hub, empowering every student with real-world skills.</p>
+      <div class="about-features">
+        <div class="about-feature">
+          <div class="about-feature-icon"><i class="fas fa-laptop-code"></i></div>
+          <div><h4>Practical Training</h4><p>100% hands-on learning with real tools</p></div>
+        </div>
+        <div class="about-feature">
+          <div class="about-feature-icon"><i class="fas fa-industry"></i></div>
+          <div><h4>Industry Exposure</h4><p>Work like a real professional</p></div>
+        </div>
+        <div class="about-feature">
+          <div class="about-feature-icon"><i class="fas fa-project-diagram"></i></div>
+          <div><h4>Real Projects</h4><p>Build your portfolio from day one</p></div>
+        </div>
+        <div class="about-feature">
+          <div class="about-feature-icon"><i class="fas fa-briefcase"></i></div>
+          <div><h4>Placement Support</h4><p>Job assistance for all students</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header center reveal">
+    <div class="section-label"><i class="fas fa-cogs"></i> Our Services</div>
+    <h2 class="section-title">What We <span>Build &amp; Deliver</span></h2>
+    <p class="section-sub">From cutting-edge software to AI solutions — we deliver technology that drives growth.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-code"></i></div>
+      <h3>Software Development</h3>
+      <p>Custom software solutions built for your business goals — scalable, robust, and reliable.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-globe"></i></div>
+      <h3>Web Development</h3>
+      <p>Modern, responsive websites and web apps that convert visitors into customers.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+      <h3>App Development</h3>
+      <p>Native and cross-platform mobile applications for iOS and Android.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-brain"></i></div>
+      <h3>AI &amp; Machine Learning</h3>
+      <p>Intelligent solutions powered by AI — from recommendation engines to predictive analytics.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+      <h3>IT Training with Live Projects</h3>
+      <p>Industry-led training where students learn by working on actual client projects.</p>
+    </div>
+  </div>
+  <div class="services-highlight reveal">
+    <span>We don't just teach —</span> we build real-world projects that go live. 🚀
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="section-header center reveal">
+    <div class="section-label"><i class="fas fa-book-open"></i> AR Square Learning</div>
+    <h2 class="section-title">Our <span>Course Catalogue</span></h2>
+    <p class="section-sub">17+ industry-relevant courses designed for beginners to advanced learners. Enroll today and start your journey.</p>
+  </div>
+  <div class="courses-grid reveal" id="coursesGrid"></div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="section-header center reveal">
+    <div class="section-label"><i class="fas fa-star"></i> Why Choose Us</div>
+    <h2 class="section-title">The <span>AR Square</span> Advantage</h2>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <div class="why-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+      <h3>Experienced Trainers</h3>
+      <p>Learn from industry professionals with 5+ years of real-world experience.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fas fa-laptop-code"></i></div>
+      <h3>Live Projects</h3>
+      <p>Work on actual client projects and build a portfolio that impresses employers.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fas fa-industry"></i></div>
+      <h3>Industry-Based Learning</h3>
+      <p>Curriculum aligned with current industry standards and employer expectations.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fas fa-certificate"></i></div>
+      <h3>Certification</h3>
+      <p>Receive industry-recognized certificates upon completion of each course.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fas fa-handshake"></i></div>
+      <h3>Placement Assistance</h3>
+      <p>Dedicated job placement support with resume building and interview prep.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTERS -->
+<div class="counters">
+  <div class="counters-grid">
+    <div class="counter-item reveal">
+      <div class="counter-num" data-target="1500">0</div>
+      <div class="counter-label">Students Trained</div>
+    </div>
+    <div class="counter-item reveal">
+      <div class="counter-num" data-target="17">0</div>
+      <div class="counter-label">Courses Available</div>
+    </div>
+    <div class="counter-item reveal">
+      <div class="counter-num" data-target="200">0</div>
+      <div class="counter-label">Live Projects Completed</div>
+    </div>
+    <div class="counter-item reveal">
+      <div class="counter-num" data-target="6">0</div>
+      <div class="counter-label">Years of Excellence</div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-header center reveal">
+    <div class="section-label"><i class="fas fa-quote-left"></i> Student Reviews</div>
+    <h2 class="section-title">What Our <span>Students Say</span></h2>
+  </div>
+  <div class="testimonials-grid reveal">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"AR Square IT completely changed my career. I joined for Web Development and within 3 months, I landed a job. The live project experience was invaluable!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">RK</div>
+        <div><div class="author-name">Rahul Kumar</div><div class="author-role">Web Developer, Infosys Jaipur</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"The Digital Marketing course here is fantastic. The trainers are very knowledgeable and the practical approach helped me start my own agency!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">PS</div>
+        <div><div class="author-name">Priya Sharma</div><div class="author-role">Digital Marketing Specialist</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"I did the Tally Prime and Advance Excel course here. Got placed within 2 weeks of completing! AR Square IT is the best institute in Jaipur."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">AM</div>
+        <div><div class="author-name">Amit Meena</div><div class="author-role">Accounts Executive, Jaipur</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-header center reveal">
+    <div class="section-label"><i class="fas fa-question-circle"></i> FAQs</div>
+    <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+  </div>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What courses are available at AR Square IT? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-a"><p>We offer 17+ courses including Web Development, App Development, Digital Marketing, Tally Prime, Generative AI, Graphic Design, Video Editing, and many more. All courses include live project work.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do you offer placement assistance? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-a"><p>Yes! We provide 100% placement assistance including resume building, interview preparation, and job referrals through our industry network in Jaipur and beyond.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the duration of courses? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-a"><p>Course durations vary from 1 month (short skill courses like Data Entry, Typing) to 6 months (comprehensive programs like Web Development, App Development). Please contact us for the specific course schedule.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Are the courses available online or offline? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-a"><p>We primarily offer offline, in-person training at our Jaipur center for the best hands-on experience. Select courses may have online options — please contact us for details.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I get a certificate after completing a course? <i class="fas fa-chevron-down"></i></div>
+      <div class="faq-a"><p>Yes, every student receives an industry-recognized certificate from AR Square IT upon successfully completing their course, which is highly valued by employers across Rajasthan.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-header center reveal">
+    <div class="section-label"><i class="fas fa-envelope"></i> Contact Us</div>
+    <h2 class="section-title">Get In <span>Touch</span> With Us</h2>
+    <p class="section-sub">Ready to start your journey? Reach out to us — we're here to help you enroll, answer questions, and guide you to the right course.</p>
+  </div>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <h4>Our Location</h4>
+          <p>1st Floor, Balaji Vihar, Lunawat Chamber, Benar Phatak, Niwaru, Jaipur, Rajasthan 302012</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><i class="fas fa-phone-alt"></i></div>
+        <div>
+          <h4>Call Us</h4>
+          <a href="tel:+917727066664">+91 77270 66664</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:info@arsquareit.com">info@arsquareit.com</a>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon"><i class="fas fa-clock"></i></div>
+        <div>
+          <h4>Working Hours</h4>
+          <p>Mon – Sat: 9:00 AM – 7:00 PM</p>
+        </div>
+      </div>
+      <div class="contact-action-btns">
+        <a href="tel:+917727066664" class="btn-call"><i class="fas fa-phone-alt"></i> Call Now</a>
+        <a href="https://wa.me/917727066664?text=Hi%2C%20I%20want%20to%20know%20more%20about%20your%20courses" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.0!2d75.7638!3d26.9124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDU0JzQ0LjYiTiA3NcKwNDUnNDkuNyJF!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin" width="100%" height="220" style="border:0;display:block;" allowfullscreen="" loading="lazy" title="AR Square IT Jaipur Location"></iframe>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <h3>📩 Send Us a Message</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="fname" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="femail" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Course Interested In</label>
+        <select id="fcourse">
+          <option value="">-- Select a course --</option>
+          <option>Web Development</option>
+          <option>App Development</option>
+          <option>Digital Marketing</option>
+          <option>Tally Prime</option>
+          <option>Generative AI</option>
+          <option>Graphic Designing</option>
+          <option>Video Editing</option>
+          <option>Advance Excel</option>
+          <option>RS-CIT</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="fmessage" placeholder="Tell us what you'd like to learn or ask anything..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">
+        <i class="fas fa-paper-plane"></i> Send Message &amp; Enroll Now
+      </button>
+      <div class="form-success" id="formSuccess">
+        ✅ Thank you! We'll contact you within 24 hours. You can also WhatsApp us directly for faster response!
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="https://via.placeholder.com/44/1E88E5/ffffff?text=AR" alt="AR Square IT">
+        <span>AR Square IT Jaipur</span>
+      </div>
+      <p>Leading IT training institute and software development company in Jaipur. Building careers through practical, project-based education since 2018.</p>
+      <div class="footer-socials" style="margin-top:16px">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Top Courses</h4>
+      <ul>
+        <li><a href="#courses">Web Development</a></li>
+        <li><a href="#courses">App Development</a></li>
+        <li><a href="#courses">Digital Marketing</a></li>
+        <li><a href="#courses">Tally Prime</a></li>
+        <li><a href="#courses">Generative AI</a></li>
+        <li><a href="#courses">Graphic Designing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <div class="footer-contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>1st Floor, Balaji Vihar, Lunawat Chamber, Benar Phatak, Jaipur 302012</span>
+      </div>
+      <div class="footer-contact-item">
+        <i class="fas fa-phone-alt"></i>
+        <span>+91 77270 66664</span>
+      </div>
+      <div class="footer-contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>info@arsquareit.com</span>
+      </div>
+      <div class="footer-contact-item">
+        <i class="fas fa-clock"></i>
+        <span>Mon–Sat: 9 AM – 7 PM</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 AR Square IT Jaipur. All rights reserved. Designed with ❤️ in Jaipur.</p>
+    <p style="font-size:0.78rem;color:rgba(255,255,255,0.4)">Training · Development · Placement</p>
+  </div>
+</footer>
+
+<!-- SOCIAL FLOAT -->
+<div class="social-float">
+  <a href="#" class="sf-ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="sf-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="sf-li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  <a href="#" class="sf-yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/917727066664?text=Hi%2C%20I%20want%20to%20know%20more%20about%20your%20courses" class="wa-float" target="_blank" title="WhatsApp Us">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+// Load logo from uploaded image
+window.addEventListener('load', () => {
+  const logoImg = document.getElementById('nav-logo-img');
+  // In production, replace with actual logo URL
+});
+
+// Courses data
+const courses = [
+  { icon: 'fas fa-calculator', name: 'Tally Prime', desc: 'Complete accounting software for business finance management.' },
+  { icon: 'fas fa-desktop', name: 'RS-CIT', desc: 'Government-recognized computer literacy course.' },
+  { icon: 'fas fa-file-invoice-dollar', name: 'Accounting', desc: 'Fundamentals to advanced business accounting skills.' },
+  { icon: 'fas fa-robot', name: 'Generative AI', desc: 'Learn to use and build with AI tools like ChatGPT.' },
+  { icon: 'fas fa-comments', name: 'Spoken English', desc: 'Build fluency and confidence in spoken English.' },
+  { icon: 'fas fa-keyboard', name: 'Computer Basic', desc: 'Essential computer skills for beginners.' },
+  { icon: 'fas fa-table', name: 'Advance Excel', desc: 'Formulas, pivot tables, macros and data analysis.' },
+  { icon: 'fab fa-google', name: 'Google Sheet', desc: 'Cloud-based spreadsheet for real-time collaboration.' },
+  { icon: 'fas fa-database', name: 'Data Entry', desc: 'Speed and accuracy in data management.' },
+  { icon: 'fas fa-font', name: 'Hindi & English Typing', desc: 'Professional typing skills for government and private jobs.' },
+  { icon: 'fas fa-paint-brush', name: 'Web Designing', desc: 'UI/UX, HTML, CSS and design principles.' },
+  { icon: 'fas fa-image', name: 'Graphic Designing', desc: 'Photoshop, Illustrator, Canva for visual content.' },
+  { icon: 'fas fa-code', name: 'Web Development', desc: 'Full-stack web development with live projects.' },
+  { icon: 'fas fa-mobile-alt', name: 'App Development', desc: 'Build Android & iOS apps from scratch.' },
+  { icon: 'fas fa-bullhorn', name: 'Digital Marketing', desc: 'SEO, social media, Google Ads and analytics.' },
+  { icon: 'fas fa-film', name: 'Video Editing', desc: 'Professional video editing and post-production.' },
+  { icon: 'fas fa-cube', name: '2D & 3D Animation', desc: 'Creative animation for films, games and media.' },
+];
+
+const grid = document.getElementById('coursesGrid');
+courses.forEach(c => {
+  grid.innerHTML += `
+    <div class="course-card">
+      <div class="course-icon"><i class="${c.icon}"></i></div>
+      <h4>${c.name}</h4>
+      <p>${c.desc}</p>
+      <a href="#contact" class="btn-enroll">Enroll Now →</a>
+    </div>`;
+});
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile menu
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// FAQ
+function toggleFaq(el) {
+  const ans = el.nextElementSibling;
+  el.classList.toggle('active');
+  ans.classList.toggle('open');
+}
+
+// Counter animation
+function animateCounter(el, target, duration = 2000) {
+  let start = 0;
+  const step = Math.ceil(target / (duration / 16));
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = start + (target > 100 ? '+' : '');
+    if (start >= target) clearInterval(timer);
+  }, 16);
+}
+
+let countersStarted = false;
+const counterEls = document.querySelectorAll('.counter-num');
+// Hero counters
+function startHeroCounters() {
+  animateCounter(document.getElementById('c1'), 1500, 2000);
+  animateCounter(document.getElementById('c2'), 17, 1500);
+  animateCounter(document.getElementById('c3'), 200, 1800);
+  animateCounter(document.getElementById('c4'), 6, 1200);
+}
+setTimeout(startHeroCounters, 800);
+
+// Scroll reveal + counters
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Counter section
+      const num = entry.target.querySelector ? entry.target.querySelector('.counter-num') : null;
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !countersStarted) {
+      countersStarted = true;
+      counterEls.forEach(el => {
+        animateCounter(el, parseInt(el.dataset.target), 2000);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelector('.counters') && counterObserver.observe(document.querySelector('.counters'));
+
+// Form submit
+function submitForm() {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  if (!name || !phone) { alert('Please fill in your name and phone number.'); return; }
+  document.getElementById('formSuccess').style.display = 'block';
+  document.getElementById('fname').value = '';
+  document.getElementById('fphone').value = '';
+  document.getElementById('femail').value = '';
+  document.getElementById('fmessage').value = '';
+}
+</script>
+</body>
+</html>
